@@ -63,7 +63,7 @@ Otwarchive::Application.routes.draw do
     resources :works
     resources :bookmarks
     resources :comments
-	end
+  end
 
 
   #### ADMIN ####
@@ -79,6 +79,7 @@ Otwarchive::Application.routes.draw do
 
   namespace :admin do
     resources :settings
+    resources :support_settings
     resources :skins do
       collection do
         get :index_rejected
@@ -121,11 +122,11 @@ Otwarchive::Application.routes.draw do
   resources :users do
     member do
       get :browse
-	  get :change_email
-	  post :change_email
+    get :change_email
+    post :change_email
       get :change_openid
       post :change_openid
-	  get :change_password
+    get :change_password
       post :change_password
       get :change_username
       post :change_username
@@ -328,7 +329,7 @@ Otwarchive::Application.routes.draw do
         put :set
         get :purge
       end
-    end    
+    end
     resources :potential_matches do
       collection do
         get :generate
@@ -428,7 +429,7 @@ Otwarchive::Application.routes.draw do
       get :do_redirect
     end
   end
-    
+
   resources :abuse_reports
   resources :external_authors do
     resources :external_author_names
