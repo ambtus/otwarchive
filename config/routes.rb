@@ -374,6 +374,7 @@ Otwarchive::Application.routes.draw do
   #### SUPPORT ####
   resources :support_requests
   match 'support' => 'support_requests#area'
+  match 'known_issues' => 'support_requests#known'
 
   #### SESSIONS ####
 
