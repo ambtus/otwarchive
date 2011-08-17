@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       invitation = Invitation.find_by_token(token)
       if !invitation
         flash[:error] = ts("There was an error with your invitation token, please contact support")
-        redirect_to new_feedback_report_path and return
+        redirect_to new_support_request_path and return
       elsif invitation.redeemed_at && invitation.invitee
         flash[:error] = ts("This invitation has already been used to create an account, sorry!")
         redirect_to root_path and return
@@ -269,7 +269,7 @@ class UsersController < ApplicationController
     render :edit and return
   end
   end
-  
+
   def change_email
     if params[:new_email].blank?
       render :change_email and return
@@ -391,7 +391,7 @@ class UsersController < ApplicationController
       format.js
     end
   end
-  
+
   def end_banner
     @user.preference.update_attribute(:banner_seen, true)
     respond_to do |format|

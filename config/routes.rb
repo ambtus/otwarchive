@@ -371,6 +371,10 @@ Otwarchive::Application.routes.draw do
   end
   resources :translation_notes
 
+  #### SUPPORT ####
+  resources :support_requests
+  match 'support' => 'support_requests#area'
+
   #### SESSIONS ####
 
   resources :user_sessions, :only => [:new, :create, :destroy] do
@@ -439,8 +443,6 @@ Otwarchive::Application.routes.draw do
   resources :search, :only => :index
 
   match 'search' => 'search#index'
-  match 'support' => 'feedbacks#create', :as => 'feedbacks', :via => [:post]
-  match 'support' => 'feedbacks#new', :as => 'new_feedback_report', :via => [:get]
   match 'tos' => 'home#tos'
   match 'tos_faq' => 'home#tos_faq'
   match 'site_map' => 'home#site_map'

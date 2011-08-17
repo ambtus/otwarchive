@@ -7,7 +7,7 @@
 <% if current_user.is_a?(User) && current_user.is_translation_admin? %>
   <%= link_to t('.link_to_new', :default => 'Add a new one'), new_locale_path %>
 <% else %>
-  <%= link_to t('.suggest_locale', :default => 'Suggest a new one!'), new_feedback_report_path %>
+  <%= link_to t('.suggest_locale', :default => 'Suggest a new one!'), new_support_request_path %>
 <% end %>
 </p>
 <!--/subnav-->
