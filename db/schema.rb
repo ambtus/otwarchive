@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(:version => 20110828172403) do
     t.datetime "updated_at"
   end
 
+  add_index "challenge_claims", ["creation_id", "creation_type"], :name => "creations"
+
   create_table "challenge_signups", :force => true do |t|
     t.integer  "collection_id"
     t.integer  "pseud_id"
@@ -217,15 +219,15 @@ ActiveRecord::Schema.define(:version => 20110828172403) do
 
   create_table "collection_profiles", :force => true do |t|
     t.integer  "collection_id"
-    t.text     "intro",                   :limit => 2147483647
-    t.text     "faq",                     :limit => 2147483647
-    t.text     "rules",                   :limit => 2147483647
+    t.text     "intro",                   :limit => 16777215
+    t.text     "faq",                     :limit => 16777215
+    t.text     "rules",                   :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "gift_notification"
-    t.integer  "intro_sanitizer_version", :limit => 2,          :default => 0, :null => false
-    t.integer  "faq_sanitizer_version",   :limit => 2,          :default => 0, :null => false
-    t.integer  "rules_sanitizer_version", :limit => 2,          :default => 0, :null => false
+    t.integer  "intro_sanitizer_version", :limit => 2,        :default => 0, :null => false
+    t.integer  "faq_sanitizer_version",   :limit => 2,        :default => 0, :null => false
+    t.integer  "rules_sanitizer_version", :limit => 2,        :default => 0, :null => false
     t.text     "assignment_notification"
   end
 
@@ -910,6 +912,9 @@ ActiveRecord::Schema.define(:version => 20110828172403) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subscriptions", ["subscribable_id", "subscribable_type"], :name => "subscribable"
+  add_index "subscriptions", ["user_id"], :name => "user_id"
 
   create_table "tag_sets", :force => true do |t|
     t.datetime "created_at"
