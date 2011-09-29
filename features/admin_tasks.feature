@@ -2,7 +2,7 @@
 Feature: Admin tasks
 
   Scenario: admin cannot log in as an ordinary user - it is a different type of account
-  
+
   Given the following admin exists
       | login       | password |
       | Zooey       | secret   |
@@ -11,22 +11,22 @@ Feature: Admin tasks
       And I fill in "user_session_password" with "secret"
       And I press "Log in"
     Then I should see "We couldn't find that user name in our database. Please try again"
-    
+
   Scenario: Ordinary user cannot log in as admin
-  
+
   Given the following activated user exists
       | login       | password      |
       | dizmo       | wrangulator   |
       And I have loaded the "roles" fixture
-  
+
   When I go to the admin_login page
       And I fill in "admin_session_login" with "dizmo"
       And I fill in "admin_session_password" with "wrangulator"
       And I press "Log in as admin"
     Then I should see "Authentication failed"
-    
+
   Scenario: Admin can log in
-  
+
   Given I have no users
       And the following admin exists
       | login       | password |
@@ -37,18 +37,18 @@ Feature: Admin tasks
       And I fill in "admin_session_password" with "secret"
       And I press "Log in as admin"
     Then I should see "Successfully logged in"
-  
+
   Scenario: admin can find users
-  
+
   Given I am logged in as "someone"
     And I have loaded the "roles" fixture
     When I am logged in as an admin
       And I fill in "query" with "someone"
       And I press "Find"
     Then I should see "someone" within "#admin_users_table"
-    
+
   Scenario: Post a FAQ
-  
+
     When I go to the archive_faqs page
     Then I should see "Some commonly asked questions about the Archive are answered here"
       And I should not see "Some text"
@@ -64,9 +64,9 @@ Feature: Admin tasks
     When I go to the archive_faqs page
       And I follow "New subsection"
     Then I should see "Some text, that is sufficiently long to pass validation" within ".userstuff"
-    
+
   Scenario: Edit FAQ
-  
+
   Given I have posted a FAQ
   When I follow "admin posts"
     And I follow "Archive FAQ" within "#main"
@@ -268,16 +268,16 @@ Feature: Admin tasks
   # Then I should not see "rolex"
 
   Scenario: make an admin post and receive comment notifications for comments posted to it
-  
+
   # admin makes post
   Given I am logged in as an admin
     And I make an admin post
-    
+
   # regular user replies to admin post
   When I am logged out as an admin
     And I am logged in as a random user
     And I go to the admin-posts page
-  Given all emails have been delivered    
+  Given all emails have been delivered
   When I follow "Add Comment"
     And I fill in "Comment" with "Excellent, my dear!"
     And I press "Add Comment"
@@ -289,7 +289,7 @@ Feature: Admin tasks
     And I am logged in as an admin
     And I go to the admin-posts page
     And I follow "Default Admin Post"
-  Given all emails have been delivered    
+  Given all emails have been delivered
   When I follow "Read Comments (1)"
     And I follow "Reply"
     And I fill in "Comment" with "Thank you very much!" within ".odd"
@@ -298,27 +298,27 @@ Feature: Admin tasks
   # admin gets notified of their own comment, this is not a bug unless:
   # TODO: comments should be able to belong to an admin officially, otherwise someone can spoof being an admin by using the admin name and email
     And 1 email should be delivered to "testadmin@example.org"
-  
+
   # regular user replies to comment of admin
   Given I am logged out as an admin
     And I am logged in as a random user
     And I go to the admin-posts page
-  Given all emails have been delivered    
+  Given all emails have been delivered
   When I follow "Read 2 Comments"
     And I follow "Reply" within ".even"
     And I fill in "Comment" with "Oh, don't grow too big a head, you." within ".even"
     And I press "Add Comment" within ".even"
   # admin gets the user's reply twice, this is not a bug unless TODO above is fixed
   Then 2 emails should be delivered to "testadmin@example.org"
-  
+
   # regular user edits their comment
-  Given all emails have been delivered    
+  Given all emails have been delivered
   When I follow "Edit"
     And I press "Update"
   Then 2 emails should be delivered to "testadmin@example.org"
-  
+
   Scenario: User views RSS of admin posts
-  
+
   Given I am logged in as an admin
     And I make an admin post
   When I am logged in
@@ -326,16 +326,9 @@ Feature: Admin tasks
   Then I should see "Subscribe with RSS"
   When I follow "Subscribe with RSS"
   Then I should see "Default Admin Post"
-  
-  Scenario: admin goes to the Support page
-  
-  Given I am logged in as an admin
-  When I go to the support page
-  Then I should see "Support and Feedback"
-    And I should see "testadmin@example.org" in the "feedback_email" input
-    
+
   Scenario: Post known issues
-  
+
   When I am logged in as an admin
     And I follow "admin posts"
     And I follow "Known Issues" within "#main"
@@ -345,9 +338,9 @@ Feature: Admin tasks
     # Suspect related to issue 2458
     And I press "Post"
   Then I should see "KnownIssue was successfully created"
-  
+
   Scenario: Edit known issues
-  
+
   # TODO
   Given I have posted known issues
   When I edit known issues

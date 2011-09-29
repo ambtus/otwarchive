@@ -19,16 +19,16 @@
 <!-- This partial renders a form for importing a work from an existing URL -->
 <div class="clear"<!--purely presentational, phase me out--></div>
 <p class="message">
-  <strong><%= ts("Please note!") %></strong> 
-  <%= ts("We cannot always automatically import works.") %> If you have trouble, <%= link_to ts("please let us know"), new_feedback_report_path %> so we can improve this tool!</p> 
-  
+  <strong><%= ts("Please note!") %></strong>
+  <%= ts("We cannot always automatically import works.") %> If you have trouble, <%= link_to ts("please let us know"), new_support_request_path %> so we can improve this tool!</p>
+
   <ul>
     <li>If your text gets truncated at the point of an em dash or accented character, you might have to manually set the encoding in the text field below.</li>
     <li>If you are importing a chaptered work from ff.net or any efiction archive (that is, an archive that uses "viewstory.php" in the url), you only need to enter the URL of the first chapter and the entire work will be downloaded with the chapters preserved. (Note: as a result, you cannot turn multiple ff.net or efiction works into the chapters of a single work.)</li>
     <li>Unless you check the override box, any information you enter under Work Tags will only be used if the importer cannot determine tags from the work itself.</li>
     <li>You will be able to edit and complete the standard header information after the import has been completed.</li>
   </ul>
-  
+
 <%= form_tag url_for(:controller => :works, :action => :import) do %>
 <fieldset>
   <legend><%= ts("Works URLs") %></legend>
@@ -36,12 +36,12 @@
     <%= label_tag "urls", ts("URLs for existing work(s) or for the chapters of a single work, one URL per line:") %> <br />
     <%= text_area_tag "urls", @urls ? @urls.join("\n") : "", :rows => 20, :cols => 90 %>
   </p>
-  
+
   <p>
-    <%= label_tag "encoding", ts("Set custom encoding to overwrite automatic detection: ") %> 
+    <%= label_tag "encoding", ts("Set custom encoding to overwrite automatic detection: ") %>
     <%= select_tag "encoding", options_for_select([''] + Encoding.name_list.sort) %> <%= link_to_help "encoding-help" %>
   </p>
-  
+
   <p>
     <%= radio_button_tag "import_multiple", "works", true %>
     <%= label_tag "import_multiple_works", ts("Works (limit of %{max})", :max => current_user.archivist ? ArchiveConfig.IMPORT_MAX_WORKS_BY_ARCHIVIST : ArchiveConfig.IMPORT_MAX_WORKS) %>
@@ -49,7 +49,7 @@
     <%= radio_button_tag "import_multiple", "chapters" %>
     <%= label_tag "import_multiple_chapters", ts("Chapters in a single work (limit of %{max})", :max => ArchiveConfig.IMPORT_MAX_CHAPTERS) %>
   </p>
-  
+
   <% if current_user.archivist %>
   <p>
     <%= check_box_tag "importing_for_others" %>

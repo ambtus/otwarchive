@@ -60,7 +60,7 @@ module NavigationHelpers
     when /my bookmarks page/
       user_bookmarks_path(User.current_user)
     when /my subscriptions page/
-      user_subscriptions_path(User.current_user)      
+      user_subscriptions_path(User.current_user)
     when /my profile page/
       user_profile_path(User.current_user)
     when /my claims page/
@@ -101,9 +101,7 @@ module NavigationHelpers
       admin_posts_path
     when /^the FAQ reorder page$/i
       manage_archive_faqs_path
-    when/^the support page$/i
-      new_feedback_report_path
-      
+
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i

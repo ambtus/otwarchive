@@ -303,6 +303,16 @@ class User < ActiveRecord::Base
 
   public
 
+  # Is this user an authorized support staffer?
+  def is_support_staffer?
+    has_role?(:support_staffer)
+  end
+
+  # Set support staffer role for this user and log change
+  def support_staffer=(should_be_support_staffer)
+    set_role('support_staffer', should_be_support_staffer == '1')
+  end
+
   # Is this user an authorized translation admin?
   def translation_admin
     self.is_translation_admin?

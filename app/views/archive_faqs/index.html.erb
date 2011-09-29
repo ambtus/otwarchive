@@ -7,10 +7,10 @@
 
   <!--main content-->
   <div class="admin userstuff">
-    <p>Some commonly asked questions about the Archive are answered here. 
-    Questions and answers about our Terms of Service can be found in the <%= link_to "TOS FAQ", tos_faq_path %>. 
-    You may also like to check out our <%= link_to "Known Issues", known_issues_path %>. 
-    If you need more help, please submit a <%= link_to "support request", feedbacks_path %>.</p>
+    <p>Some commonly asked questions about the Archive are answered here.
+    Questions and answers about our Terms of Service can be found in the <%= link_to "TOS FAQ", tos_faq_path %>.
+    You may also like to check out our <%= link_to "Known Issues", known_issues_path %>.
+    If you need more help, please submit a <%= link_to "support request", new_support_request_path %>.</p>
 
   <% unless @archive_faqs.blank?  %>
     <h3 id="categories">Available Categories</h3>
@@ -20,5 +20,5 @@
       <% end %>
     </ol>
   <% end %>
-  </div> 
+  </div>
 <% end %>

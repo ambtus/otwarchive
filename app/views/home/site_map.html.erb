@@ -11,7 +11,7 @@
 	  <li><%= link_to t('.languages', :default => "Languages"), languages_path %></li>
 	  <li><%= link_to t('.collections', :default => "Collections and Challenges"), collections_path %></li>
 	</ul>
-	
+
 <h3>About the Archive of Our Own</h3>
 	<ul>
 		<li><%= link_to t('.terms_of_service', :default => "Terms of Service"), tos_path %></li>
@@ -20,7 +20,7 @@
 		<li><%= link_to t('.known_issues', :default => "Known Issues"), known_issues_path %></li>
 		<li>The Archive of Our Own is a project of the <a href="http://transformativeworks.org"><acronym title="Organization for Transformative Works">OTW</acronym></a></li>
 	</ul>
-	
+
 <% if logged_in? %>
 <h3>Access your account</h3>
 	<ul>
@@ -46,11 +46,11 @@
     <li><%= link_to t('.delete_account', :default => "Delete My Account"), @user, :confirm => t('.deletion_warning', :default => 'This will permanently delete your account and cannot be undone. Are you sure?'), :method => :delete %></li>
 	</ul>
 <% end %>
-	
+
 <h3>Contact Us</h3>
 	<ul>
-		<li><%= link_to t('.support_and_feedback', :default => "Support and Feedback"), new_feedback_report_path %></li>
+		<li><%= link_to t('.support_and_feedback', :default => "Support and Feedback"), new_support_request_path %></li>
 		<li><%= link_to t('.report_abuse', :default => "Report Abuse"), new_abuse_report_path %></li>
 	</ul>
 </div>
-	
+
